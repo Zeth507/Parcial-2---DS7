@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+	<title>Parcial 2</title>
+	<link rel="stylesheet" href="act4.css">
+    <script src="jquery-3.6.1.js"> </script>
+</head>
+
+
 <?php
 
  abstract class Item {
@@ -78,7 +91,7 @@
     } 
 }
 
-class Pizza extends Consumable {
+/* class Pizza extends Consumable {
     // Declaramos los atributos:
     public $number_slices;
     public $slices_eat;
@@ -119,7 +132,9 @@ class Pizza extends Consumable {
         return $this->weight = $_weight;
      }
      
-} 
+}  */
+
+
 
 class Health extends Consumable {
    // Declaramos los atributos:
@@ -133,18 +148,49 @@ class Health extends Consumable {
 
    } 
     
-   public function hp_a($hp_actual){  
+   public function hp_a(){  
 
       return $this->hp_actual = $hp_actual;   } 
 } 
 
 
-$health = New Health($hp_actual);
-    $hp_actual = $health->hp_a();
 $name = $_POST["name"];
-echo " Vida Actual: $hp_actual <br>
+echo " Vida Actual:  <br>
 
-El nombre de tu jugador es $name";
+El nombre de tu jugador es $name y un Goblin con 5 de vida se acerca a atacarte, con que arma deseas contraatacar? <br>";
+?>
+<form id="formulario" method="post">
+<input type="hidden" id="arma" name="arma" value="sword">
+    <button type="button" id="sword">Espada</button>
+    <button type="button" id="bow">Arco</button><br><br>
+</form>
+
+<!-- Ajax para Atacar!-->
+<script>
+$("#sword").click(function(){
+    $.ajax({
+        url: "armas.php",
+        type: "post",
+        data: $("#formulario").serialize(),
+        success: function(resultado){
+            $("#resultado").html(resultado);
+        }
+    });
+});
+</script>
+
+<script>
+$("#bow").click(function(){
+    $.ajax({
+        url: "armas.php",
+        type: "post",
+        data: $("#formulario").serialize(),
+        success: function(resultado){
+            $("#resultado").html(resultado);
+        }
+    });
+});
+</script>
 
 
 
@@ -160,7 +206,4 @@ El nombre de tu jugador es $name";
 
 
 
-
-
-
- ?>
+ 
