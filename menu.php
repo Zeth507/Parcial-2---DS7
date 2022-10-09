@@ -15,6 +15,7 @@
 
 Ingrese el nombre de su Jugador
     <input name="name" type="text" placeholder="..."><br><br>
+    <input type="hidden" id="arma" name="arma" value="sword">
 
     <button type="button" id="iniciar">Iniciar juego</button><br><br>
 
